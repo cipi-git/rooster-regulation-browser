@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #c9b3b3;
+    color: #333;
+    padding: 2rem;
+    background-image: url("https://media.istockphoto.com/id/2168755432/photo/curious-free-range-chickens-looking-into-the-camera-wide-angle-close-up-on-green-grass.jpg?s=612x612&w=0&k=20&c=9VzG8x9vQVNpI8bp22OrKVJEvGp1V5H-k5vTwzqI2Ek=");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        
+}
+
+.container {
+    max-width: 380px;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 2rem;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background: #ff9800;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 1rem;
+    margin: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e68900;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
