@@ -2,25 +2,71 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Rooster Regulation</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rooster Regulation — Fun Edition</title>
+    <meta name="theme-color" content="#ff7a00" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>🐓 Rooster Regulation</h1>
+    <header class="site-header">
+        <h1>Rooster Regulation</h1>
+        <p class="tagline">Wake-up calls & hour checks — with extra <span class="sparkle">fun</span>!</p>
+    </header>
 
-        <button id="crowBtn">Announce Dawn</button>
-        <p id="roosterCall"></p>
+    <main>
+        <section class="hero" aria-label="Rooster poster with regulations overlay">
+            
+            <img src="img/rooster.jpg"
+                alt="Rooster and hen illustration with the text 'He Rules the Roost... but I Rule the Rooster'">
+            <div class="reg-box">
+                <h2 class="reg-title">Regulations</h2>
+                <ul class="reg-list">
+                    <li>No wake-up calls before <strong>06:00</strong>.</li>
+                    <li>Hourly checks accept only <strong>0-23</strong>.</li>
+                    <li>Use “Cock-a-doodle-doo!” responsibly.</li>
+                    <li>Respect quiet hours: <strong>22:00-06:00</strong>.</li>
+                </ul>
+            </div>
+        </section>
 
-        <label for="hourInput">Enter Hour (0–23):</label>
-        <input type="number" id="hourInput" min="0" max="23">
-        <button id="checkHourBtn">Check Hour</button>
-        <p id="hourResult"></p>
-    </div>
+        <!-- Main interactive card -->
+        <section class="card" aria-labelledby="card-title">
+            <div class="sticker" aria-hidden="true" title="Rooster sticker"></div>
+            <h2 id="card-title">Try the rooster</h2>
 
-    <script src="script.js"></script>
+            <div class="controls">
+                <button id="btn-announce" type="button" class="btn primary" title="Hear the rooster shout">
+                    Cock-a-doodle-doo!</button>
+            </div>
+
+            <div class="controls grid">
+                <label for="hour" class="label">Enter an hour (0-23)</label>
+                <div class="input-row">
+                    <input id="hour" name="hour" type="number" inputmode="numeric" min="0" max="23" step="1"
+                        placeholder="e.g. 6" aria-describedby="hourHint">
+                    <button id="btn-check" type="button" class="btn">Check hour</button>
+                </div>
+                <p id="hourHint" class="hint">Tip: press Enter to check.</p>
+            </div>
+
+            <div class="results">
+                <p id="roosterCall" role="status" aria-live="polite"></p>
+                <p id="hourResult" role="status" aria-live="polite"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Coding is fun!.</p>
+    </footer>
+
+    <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    
+    <script src="script.js" defer></script>
 </body>
 
 </html>

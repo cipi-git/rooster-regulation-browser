@@ -1,41 +1,330 @@
+/* playful, responsive theme */
+:root {
+    --bg1: #ff7a00;
+    --bg2: #ff3e7f;
+    --card: rgba(255, 255, 255, .75);
+    --ink: #1f2937;
+    --btn: #ff7a00;
+    --btn-ink: #121212;
+    --ring: #ffcf33;
+    --shadow: 0 12px 28px rgba(0, 0, 0, .18);
+    --radius: 18px;
+    --space: 16px;
+    --tap: 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+html,
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #c9b3b3;
-    color: #333;
-    padding: 2rem;
-    background-image: url("https://media.istockphoto.com/id/2168755432/photo/curious-free-range-chickens-looking-into-the-camera-wide-angle-close-up-on-green-grass.jpg?s=612x612&w=0&k=20&c=9VzG8x9vQVNpI8bp22OrKVJEvGp1V5H-k5vTwzqI2Ek=");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-        
+    height: 100%;
 }
 
-.container {
-    max-width: 380px;
+body {
     margin: 0;
-    background: rgba(255, 255, 255, 0.5);
-    padding: 2rem;
+    font-family: 'Fredoka', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    background-attachment: fixed;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100svh;
+    transition: background .6s ease;
+}
+
+/* header */
+.site-header {
+    text-align: center;
+    padding: clamp(16px, 4vw, 32px);
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
+
+.site-header h1 {
+    margin: .25rem 0 0;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    letter-spacing: .3px;
+}
+
+.tagline {
+    margin: .25rem 0 0;
+    opacity: .95;
+    font-size: clamp(1rem, 2.6vw, 1.125rem);
+}
+
+.sparkle::after {
+    content: "✨";
+    margin-left: .25ch;
+}
+
+/* === HERO with overlayed regulations box === */
+.hero {
+    --reg-left: 3.5%;
+    --reg-top: 18%;
+    --reg-width: 30%;
+    --reg-bg: rgba(255, 255, 255, .85);
+    --reg-ink: #1f2937;
+    --reg-blur: 6px;
+
+    position: relative;
+    width: min(900px, 95vw);
+    margin: clamp(8px, 3vw, 16px) auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
+}
+
+.hero>img {
+    display: block;
+    width: 900px;
+    height: 650px;
+}
+
+.reg-box {
+    position: absolute;
+    left: var(--reg-left);
+    top: var(--reg-top);
+    width: var(--reg-width);
+    color: var(--reg-ink);
+    background: var(--reg-bg);
+    backdrop-filter: blur(var(--reg-blur));
+    -webkit-backdrop-filter: blur(var(--reg-blur));
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, .08);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+}
+
+.reg-title {
+    margin: 0 0 6px;
+    font-size: clamp(1.05rem, 2.6vw, 1.25rem);
+}
+
+.reg-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 4px;
+    font-size: clamp(.95rem, 2.3vw, 1.05rem);
+}
+
+/* on small screens: place the box under the image */
+@media (max-width:560px) {
+    .hero {
+        overflow: visible;
+    }
+
+    .reg-box {
+        position: static;
+        width: auto;
+        margin: 10px 0 0;
+    }
+}
+
+/* main card */
+main {
+    display: grid;
+    place-items: center;
+    padding: clamp(12px, 4vw, 28px);
+}
+
+.card {
+    width: min(780px, 95vw);
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: clamp(16px, 4vw, 28px);
+    box-shadow: var(--shadow);
+    backdrop-filter: saturate(120%) blur(6px);
+    position: relative;
+    overflow: hidden;
+}
+
+.card h2 {
+    margin: 0 0 .5rem;
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+}
+
+/* confetti burst */
+.card.burst::before {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background:
+        radial-gradient(circle at 20% 20%, #ffd166 0 6px, transparent 7px),
+        radial-gradient(circle at 80% 30%, #06d6a0 0 6px, transparent 7px),
+        radial-gradient(circle at 30% 80%, #118ab2 0 6px, transparent 7px),
+        radial-gradient(circle at 70% 75%, #ef476f 0 6px, transparent 7px);
+    opacity: .9;
+    animation: pop .6s ease both;
+    pointer-events: none;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: .9;
+    }
+}
+
+/* sticker placeholder */
+.sticker {
+    width: 120px;
+    height: 120px;
+    background: url('img/your-rooster-sticker.png') center/contain no-repeat;
     border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+    margin: 0 auto 12px;
+    transform: rotate(-6deg);
 }
 
-button {
-    background: #ff9800;
-    border: none;
-    padding: 10px 20px;
-    color: white;
+.sticker:empty,
+.sticker:not([style*="url"]) {
+    background: radial-gradient(circle at 30% 30%, #fff, #ffe2b8);
+}
+
+/* controls */
+.controls {
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+    margin: 10px 0 14px;
+}
+
+.controls.grid {
+    grid-template-columns: 1fr;
+}
+
+.label {
+    font-weight: 600;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+input[type="number"] {
+    width: 160px;
+    max-width: 240px;
+    padding: .7rem 1rem;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: #fff;
     font-size: 1rem;
-    margin: 10px;
-    border-radius: 6px;
+    min-height: var(--tap);
+    outline: none;
+}
+
+input[type="number"]:focus {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 4px rgba(255, 207, 51, .35);
+}
+
+.btn {
+    --b: var(--btn);
+    background: var(--b);
+    color: var(--btn-ink);
+    border: 0;
+    padding: .8rem 1.1rem;
+    border-radius: 12px;
+    font-weight: 700;
+    min-height: var(--tap);
     cursor: pointer;
+    box-shadow: 0 6px 0 rgba(0, 0, 0, .12);
+    transform: translateY(0);
+    transition: transform .1s ease, filter .15s ease;
 }
 
-button:hover {
-    background: #e68900;
+.btn:hover {
+    filter: brightness(1.05);
 }
 
-p {
-    font-size: 1.1rem;
-    margin-top: 1rem;
+.btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, .12);
+}
+
+.btn.primary {
+    --b: linear-gradient(135deg, #ffd166, #ff9f1c);
+}
+
+.hint {
+    margin: 0;
+    opacity: .75;
+    font-size: .95rem;
+}
+
+.results {
+    margin-top: 8px;
+    display: grid;
+    gap: 6px;
+    min-height: 3.5em;
+}
+
+#roosterCall,
+#hourResult {
+    margin: 0;
+    font-size: clamp(1.05rem, 3.2vw, 1.25rem);
+}
+
+/* footer */
+.site-footer {
+    text-align: center;
+    color: #fff;
+    opacity: .9;
+    padding: clamp(12px, 3vw, 20px);
+    font-size: .95rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
+
+/* toast */
+#toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, .85);
+    color: #fff;
+    padding: .6rem .9rem;
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity .25s ease;
+    pointer-events: none;
+    max-width: min(90vw, 420px);
+    text-align: center;
+    z-index: 10;
+}
+
+#toast.show {
+    opacity: 1;
+}
+
+/* responsive tweaks */
+@media (max-width:520px) {
+    .input-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    input[type="number"],
+    .btn {
+        width: 100%;
+    }
+
+    .sticker {
+        width: 100px;
+        height: 100px;
+    }
 }
